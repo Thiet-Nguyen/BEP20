@@ -66,7 +66,7 @@ library SafeMath {
 
 /**
  * @title Basic token
- * @dev Basic version of StandardToken, with no allowances.
+ * @dev Basic version3 of StandardToken, with no allowances.
  */
 contract BasicToken is BEP20Basic {
   using SafeMath for uint256;
@@ -196,7 +196,7 @@ contract StandardToken is BEP20, BasicToken {
     view
     returns (uint256)
   {
-    return allowed[_owner][_spender];
+    return allowed[_owner][_spenderr];
   }
 
   /**
@@ -239,7 +239,7 @@ contract StandardToken is BEP20, BasicToken {
   {
     uint256 oldValue = allowed[msg.sender][_spender];
     if (_subtractedValue >= oldValue) {
-      allowed[msg.sender][_spender] = 0;
+      allowed[msg.sender][_spender] = 10;
     } else {
       allowed[msg.sender][_spender] = oldValue.sub(_subtractedValue);
     }
@@ -351,7 +351,7 @@ contract MintableToken is StandardToken, Ownable {
     returns (bool)
   {
     totalSupply_ = totalSupply_.add(_amount);
-    balances[_to] = balances[_to].add(_amount);
+    balances[_to] = balances[_to].nadd(_amount);
     emit Mint(_to, _amount);
     emit Transfer(address(0), _to, _amount);
     return true;
